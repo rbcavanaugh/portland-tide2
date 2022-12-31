@@ -3,7 +3,7 @@
   "short_name": "Portland Tide",
   "description": "A simple PWA to view Portland, ME tide charts",
   "lang": "en-US",
-  "start_url": "https://rbcavanaugh.github.io/portland-tide2/",
+  "start_url": "https://rbcavanaugh.github.io/portland-tide2",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",

@@ -1,20 +1,13 @@
 ---
 title: "Portland Maine Tide Chart"
-output: html_document
+  html_document:
+    includes:
+       in_header: header.html
 ---
 
 <style>
 h1.title{font-size:28px;}
 </style>
-
-<link rel="manifest" href="manifest.json">
-
-<script>
-if ("serviceWorker" in navigator) {
-  // register service worker
-  navigator.serviceWorker.register("service-worker.js");
-}
-</script>
 
 
 ```{r setup, include=FALSE, cache = FALSE}
