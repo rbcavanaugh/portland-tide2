@@ -7,7 +7,9 @@ output:
 ---
 
 <style>
-h1.title{font-size:28px;}
+h1.title{font-size:28px;text-align:center;}
+.nav-pills{display: flex;justify-content: center;}
+.text{margin:auto;width:90%;}
 </style>
 
 
@@ -48,14 +50,10 @@ dailyWeather = getWeatherData()
 xaringanExtra::use_panelset()
 ```
 
-::: l-screen
 
-::::: {.panelset}
+## {.tabset .tabset-pills}
 
-
-::: {.panel}
-
-## Yesterday {.panel-name}
+### Yesterday
 
 
 ```{r, echo = FALSE}
@@ -74,12 +72,8 @@ date = as.Date(Sys.time(), tz = "EST5EDT")-1
 getTextSummary(dailyWeather = dailyWeather, date = date)
 ```
 
-:::
 
-::: {.panel}
-
-## Today {.panel-name}
-
+### Today {.active}
 
 ```{r, echo = FALSE}
 p1 = tideData %>%
@@ -97,12 +91,7 @@ date = as.Date(Sys.time(), tz = "EST5EDT")
 getTextSummary(dailyWeather = dailyWeather, date = date)
 ```
 
-:::
-
-
-::: {.panel}
-
-## Tomorrow {.panel-name}
+### Tomorrow 
 
 ```{r, echo = FALSE}
 p2 = tideData %>%
@@ -120,12 +109,7 @@ hr()
 date = as.Date(Sys.time(), tz = "EST5EDT")+1
 getTextSummary(dailyWeather = dailyWeather, date = date)
 ```
-:::
 
-
-:::::
-
-:::
-
+## {-}
 
 

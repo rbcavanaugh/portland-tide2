@@ -149,5 +149,5 @@ getTextSummary <- function(dailyWeather, date){
 
   textOut = paste(sunText, tempText, windText, rainText, alertText)
 
-  return(tags$p(HTML(textOut)))
+  return(tags$p(HTML(textOut), class = "text"))
 }
