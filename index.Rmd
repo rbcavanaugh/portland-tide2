@@ -7,6 +7,9 @@ output: html_document
 h1.title{font-size:28px;}
 </style>
 
+<link rel="stylesheet" href="style.css" />
+<link rel="manifest" href="manifest.json" />
+
 
 ```{r setup, include=FALSE, cache = FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.height = 8)
