@@ -10,6 +10,7 @@ output:
 h1.title{font-size:28px;text-align:center;}
 .nav-pills{display: flex;justify-content: center;}
 .text{margin:auto;width:90%;}
+.btn1{color: #fff; background-color: #337ab7;border-radius: 20px;border:none;padding: 8px 15px;}
 </style>
 
 
@@ -112,4 +113,6 @@ getTextSummary(dailyWeather = dailyWeather, date = date)
 
 ## {-}
 
-
+<center>
+<button onClick="window.location.reload();" class = "btn1">Refresh</button>
+</center>
