@@ -743,6 +743,18 @@ text-align: right;
   })
 })()
 </script>
+<link href="data:application/octet-stream;base64,ewogICJuYW1lIjogIlBvcnRsYW5kIFRpZGUiLAogICJzaG9ydF9uYW1lIjogIlBvcnRsYW5kIFRpZGUiLAogICJkZXNjcmlwdGlvbiI6ICJBIHNpbXBsZSBQV0EgdG8gdmlldyBQb3J0bGFuZCwgTUUgdGlkZSBjaGFydHMiLAogICJsYW5nIjogImVuLVVTIiwKICAic3RhcnRfdXJsIjogImh0dHBzOi8vcmJjYXZhbmF1Z2guZ2l0aHViLmlvL3BvcnRsYW5kLXRpZGUyIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZmZmZmZmIiwKICAidGhlbWVfY29sb3IiOiAiI2ZmZmZmZiIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImljb25zL2ljb24tMjU2LnBuZyIsCiAgICAgICJzaXplcyI6ICIyNTZ4MjU2IgogICAgfQogIF0KfQo=" rel="manifest" />
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker
+      .register("service-worker.js")
+      .then(res => console.log("service worker registered"))
+      .catch(err => console.log("service worker not registered", err))
+  })
+}
+</script>
 
 <style type="text/css">
 code{white-space: pre-wrap;}
@@ -873,13 +885,6 @@ display: none;
 <style>
 h1.title{font-size:28px;}
 </style>
-<p><link href="data:application/octet-stream;base64,ewogICJuYW1lIjogIlBvcnRsYW5kIFRpZGUiLAogICJzaG9ydF9uYW1lIjogIlBvcnRsYW5kIFRpZGUiLAogICJkZXNjcmlwdGlvbiI6ICJBIHNpbXBsZSBQV0EgdG8gdmlldyBQb3J0bGFuZCwgTUUgdGlkZSBjaGFydHMiLAogICJsYW5nIjogImVuLVVTIiwKICAic3RhcnRfdXJsIjogImh0dHBzOi8vcmJjYXZhbmF1Z2guZ2l0aHViLmlvL3BvcnRsYW5kLXRpZGUyLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2ZmZmZmZiIsCiAgInRoZW1lX2NvbG9yIjogIiNmZmZmZmYiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJpY29ucy9pY29uLTI1Ni5wbmciLAogICAgICAic2l6ZXMiOiAiMjU2eDI1NiIKICAgIH0KICBdCn0K" rel="manifest"></p>
-<script>
-if ("serviceWorker" in navigator) {
-  // register service worker
-  navigator.serviceWorker.register("service-worker.js");
-}
-</script>
 <div class="l-screen">
 <div class="panelset">
 <div id="yesterday" class="section level2 panel-name panel">
