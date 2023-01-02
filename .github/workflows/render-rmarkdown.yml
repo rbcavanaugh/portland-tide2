@@ -1,7 +1,5 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
     branches: main
@@ -38,12 +36,10 @@ jobs:
         run: Rscript -e 'install.packages("ggpmisc")'
       - name: Install janitor
         run: Rscript -e 'install.packages("htmltools")'
-        
-      - name: Get data from clinicaltrials.gov and rebuild site
-        env: 
-          MAPBOX: ${{ secrets.WEATHER }}
 
       - name: Render Rmarkdown files and Commit Results
+        env: 
+          MAPBOX: ${{ secrets.WEATHER }}
         run: |
           echo "Rendering the page..."
           Rscript -e 'rmarkdown::render(input = "index.Rmd")'
