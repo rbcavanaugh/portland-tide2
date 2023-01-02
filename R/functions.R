@@ -1,7 +1,7 @@
 
 lat = "43.6591"
 lon = "-70.2568"
-key = "WEATHER"
+key = Sys.getenv("WEATHER")
 cnt = "2"
 part = "hourly"
 units = "imperial"
