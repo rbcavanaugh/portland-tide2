@@ -1,17 +1,3 @@
-
-lat = "43.6591"
-lon = "-70.2568"
-key = "WEATHER"
-cnt = "2"
-part = "hourly"
-units = "imperial"
-
-url <- glue("https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&units={units}&appid={key}")
-
-weatherData <- fromJSON(url)
-
-
-
 ntt2 <- function(x){
   tmp = lubridate::seconds_to_period(x)
   hour = tmp@hour
@@ -34,16 +20,6 @@ ntt2 <- function(x){
 
 ntt2_vec <- Vectorize(ntt2)
 
-getTideData <- function(){
- rtide::tide_height(
-  "Casco Bay", #
-  from = Sys.Date()-15, to = Sys.Date()+15,
-  minutes = 10L, tz = "EST5EDT"
-) %>%
-  tidyr::separate(DateTime, c("date", "time"), sep = " ", remove = F) %>%
-  mutate(date = ymd(date), time = hms(time), dateFactor = as.factor(date),
-         ttip = ntt2_vec(DateTime))
-}
 
 degrees_to_compass = function(x) {
   breaks = c(0, 45, 90, 135, 180, 225, 270, 315, 360)
@@ -73,67 +49,7 @@ getWeatherData <- function(){
     mutate(precip = ifelse(pop=="< 5%", pop, scales::percent(as.numeric(pop), accuracy = 1)))
 }
 
-getPlot <- function(selectedDat, tideDat){
-  p =  ggplot(data = selectedDat, aes(x = time, y = TideHeight)) +
-    geom_line(data = tideDat, alpha = 0.1) +
-    stat_peaks(colour = "black") +
-    stat_valleys(colour = "black") +
-    geom_line() +
-    scale_x_time(
-      name = "Time",
-      breaks=hours(seq(0,24,3)),
-      labels=c("midnight","3am", "6am", "9am", "noon", "3pm", "6pm", "9am", "midnight")) +
-    scale_y_continuous(name = "Tide Height (m)",
-                       breaks = seq(-1, 4, 0.5),
-                       labels = seq(-1, 4, 0.5)) +
-    coord_cartesian(clip = 'off') +
-    theme_minimal(base_size = 20) +
-    theme(axis.text.x=element_text(angle=45, hjust=1))
-  
-  dat = ggplot_build(p)
-  peak_dat = dat$data[[2]][,c("x", "y")] %>% rowwise() %>% mutate(label = ntt2(x))
-  valley_dat = dat$data[[3]][,c("x", "y")] %>% rowwise() %>% mutate(label = ntt2(x))
-  
-  p_text = p + 
-    annotate("text", size = 6,
-             x = c(peak_dat$x,valley_dat$x),
-             y = c(peak_dat$y+.15,valley_dat$y-.15),
-             label = c(peak_dat$label, valley_dat$label))
-  
-  return(p_text)
-}
-# 
-# getPlotInt <- function(selectedDat, tideDat){
-#   p = 
-#     selectedDat %>% print %>%
-#     ggplot(aes(x = time, y = TideHeight)) +
-#     geom_line(data = tideDat, alpha = 0.1) +
-#      stat_peaks(colour = "black") +
-#      stat_valleys(colour = "black") +
-#      geom_line() +
-#     geom_point_interactive(aes(tooltip = ttip, data_id = ttip), alpha = 0.005) +
-#      scale_x_time(
-#        name = "Time",
-#        breaks=hours(seq(0,24,3)),
-#        labels=c("midnight","3am", "6am", "9am", "noon", "3pm", "6pm", "9am", "midnight")) +
-#      scale_y_continuous(name = "Tide Height (m)",
-#                         breaks = seq(-1, 4, 0.5),
-#                         labels = seq(-1, 4, 0.5)) +
-#      theme_minimal(base_size = 14) +
-#      theme(axis.text.x=element_text(angle=45,hjust=1))
-# 
-#   dat = ggplot_build(p)
-#   peak_dat = dat$data[[2]][,c("x", "y")] %>% rowwise() %>% mutate(label = ntt2(x))
-#   valley_dat = dat$data[[3]][,c("x", "y")] %>% rowwise() %>% mutate(label = ntt2(x))
-# 
-#   p_text = p +
-#     annotate("text",
-#              x = c(peak_dat$x,valley_dat$x),
-#              y = c(peak_dat$y+.15,valley_dat$y-.15),
-#              label = c(peak_dat$label, valley_dat$label))
-#   
-#   return(p_text)
-# }
+
 
 getTextSummary <- function(dailyWeather, date){
   

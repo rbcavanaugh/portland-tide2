@@ -17,9 +17,6 @@ h1.title{font-size:28px;text-align:center;}
 ```{r setup, include=FALSE, cache = FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.height = 8)
 
-library(flexdashboard)
-# Install thematic and un-comment for themed static plots (i.e., ggplot2)
-# thematic::thematic_rmd()
 library(lubridate)
 library(ggplot2)
 library(rtide)
@@ -32,23 +29,19 @@ library(jsonlite)
 library(tidyr)
 library(purrr)
 library(htmltools)
+library(glue)
 
-#source("R/key.R")
+source("R/key.R")
 source("R/functions.R")
-
 # saveRDS(weatherData, "wd.rds")
 # saveRDS(tideData, "td.rds")
 # 
-weatherData = readRDS("wd.rds")
-tideData = readRDS("td.rds")
+# weatherData = readRDS("wd.rds")
+# tideData = readRDS("td.rds")
 
 tideData = getTideData()
 dailyWeather = getWeatherData()
 
-```
-
-```{r panelset, echo=FALSE}
-xaringanExtra::use_panelset()
 ```
 
 
@@ -72,7 +65,6 @@ hr()
 date = as.Date(Sys.time(), tz = "EST5EDT")-1
 getTextSummary(dailyWeather = dailyWeather, date = date)
 ```
-
 
 ### Today {.active}
 
