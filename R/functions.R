@@ -6,6 +6,8 @@ cnt = "2"
 part = "hourly"
 units = "imperial"
 
+print(nchar(key))
+
 url <- glue("https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&units={units}&appid={key}")
 
 weatherData <- fromJSON(url)

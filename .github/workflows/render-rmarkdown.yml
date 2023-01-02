@@ -39,7 +39,7 @@ jobs:
 
       - name: Render Rmarkdown files and Commit Results
         env: 
-          MAPBOX: ${{ secrets.WEATHER }}
+          WEATHER: ${{ secrets.WEATHER }}
         run: |
           echo "Rendering the page..."
           Rscript -e 'rmarkdown::render(input = "index.Rmd")'
