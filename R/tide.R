@@ -62,3 +62,16 @@ getPlot <- function(selectedDat, tideDat){
   return(p_text)
 }
 
+
+# 
+# rtide::tide_height(
+#   "Casco Bay", #
+#   from = Sys.Date()-60, to = Sys.Date()+60,
+#   minutes = 10L, tz = "EST5EDT"
+# ) %>%
+#   tidyr::separate(DateTime, c("date", "time"), sep = " ", remove = F) %>%
+#   mutate(date = ymd(date), time = hms(time), dateFactor = as.factor(date),
+#          ttip = ntt2_vec(DateTime))
+# 
+# 
+# t = harmonics

@@ -1,5 +1,5 @@
 ---
-title: "Portland Maine Tide Chart"
+title: "Portland, Maine Tides"
 output:
   html_document:
     includes:
@@ -11,7 +11,46 @@ h1.title{font-size:28px;text-align:center;}
 .nav-pills{display: flex;justify-content: center;}
 .text{margin:auto;width:90%;}
 .btn1{color: #fff; background-color: #337ab7;border-radius: 20px;border:none;padding: 8px 15px;}
+.btn2{color: #337ab7; background-color: #fff;border-radius: 20px;border-color:#337ab7;padding: 8px 15px;}
+.center {display: block;margin-left: auto;margin-right: auto;width: 50%;}
 </style>
+
+```{r, results = "asis", echo = FALSE, eval = TRUE}
+htmltools::HTML(
+  '<div class="modal" id="modal1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">About this website</h4>
+        
+      </div>
+      <div class="modal-body">
+        <div>
+        This is a simple mobile-focused website (and progressive web app) for checking the 
+        current tide levels in the Casco Bay region of maine. The tide data
+        comes from rtide <a href="https://github.com/poissonconsulting/rtide">https://github.com/poissonconsulting/rtide</a>
+        and the NOAA. Weather data comes from Open Weather Map 
+        <a href="https://openweathermap.org">https://openweathermap.org</a>.
+        </div><br>
+        <div>
+        You can add the "app" to your phone home screen by selecting "add to home screen"
+        in Sarafi (iPhone) or Chrome (Android).
+        </div><br>
+        <div>
+        Not a web-developer, just a tinkerer who likes taking the dogs to the beach. <a href="https://github.com/rbcavanaugh/portland-tide2">code</a><br><br>
+        <img src="www/pups.jpg" alt="dogs on the beach" width="50%" class="center"><img>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn1" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>'
+)
+```
+
 
 
 ```{r setup, include=FALSE, cache = FALSE}
@@ -107,4 +146,8 @@ getTextSummary(dailyWeather = dailyWeather, date = date)
 
 <center>
 <button onClick="window.location.reload();" class = "btn1">Refresh</button>
+<button type="button" class="btn2" data-toggle="modal" data-target="#modal1">
+  About
+</button>
 </center>
+
