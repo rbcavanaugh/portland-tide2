@@ -1,5 +1,5 @@
 ---
-title: "Portland, Maine Tides"
+title: "Casco Bay Tides"
 output:
   html_document:
     includes:
@@ -27,15 +27,15 @@ htmltools::HTML(
       </div>
       <div class="modal-body">
         <div>
-        This is a simple mobile-focused website (and progressive web app) for checking the 
-        current tide levels in the Casco Bay region of maine. The tide data
-        comes from rtide <a href="https://github.com/poissonconsulting/rtide">https://github.com/poissonconsulting/rtide</a>
-        and the NOAA. Weather data comes from Open Weather Map 
-        <a href="https://openweathermap.org">https://openweathermap.org</a>.
+        Just a simple web-app for checking
+        current tide levels in the Casco Bay region of Maine. The tide data
+        comes from the NOAA. Weather data comes from Open Weather Map. The website
+        is free to use and doesn\'t track any cookies or collect any data.
         </div><br>
         <div>
         You can add the "app" to your phone home screen by selecting "add to home screen"
-        in Sarafi (iPhone) or Chrome (Android).
+        in Sarafi (iPhone) or Chrome (Android) and it will appear like a normal app
+        on your phone.
         </div><br>
         <div>
         Not a web-developer, just a tinkerer who likes taking the dogs to the beach. <a href="https://github.com/rbcavanaugh/portland-tide2">code</a><br><br>
