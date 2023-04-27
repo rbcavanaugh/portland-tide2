@@ -16,7 +16,7 @@ h1.title{font-size:28px;text-align:center;}
 </style>
 
 ```{r, results = "asis", echo = FALSE, eval = TRUE}
-htmltools::HTML( 
+htmltools::HTML(
   '<div class="modal" id="modal1">
   <div class="modal-dialog">
     <div class="modal-content">
