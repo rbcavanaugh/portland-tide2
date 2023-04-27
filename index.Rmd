@@ -54,7 +54,7 @@ htmltools::HTML(
 
 
 ```{r setup, include=FALSE, cache = FALSE}
-knitr::opts_chunk$set(echo = FALSE, fig.height = 8)
+knitr::opts_chunk$set(echo = FALSE, fig.height = 8, warning = FALSE, message = FALSE)
 
 library(lubridate)
 library(ggplot2)
@@ -107,7 +107,7 @@ getTextSummary(dailyWeather = dailyWeather, date = date)
 
 ### Today {.active}
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 p1 = tideData %>%
     filter(date == as.Date(Sys.time(), tz = "EST5EDT"))
 
@@ -118,14 +118,14 @@ getPlot(p1, tideData)
 hr()
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 date = as.Date(Sys.time(), tz = "EST5EDT")
 getTextSummary(dailyWeather = dailyWeather, date = date)
 ```
 
 ### Tomorrow 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 p2 = tideData %>%
     filter(date == as.Date(Sys.time(), tz = "EST5EDT")+1)
 
