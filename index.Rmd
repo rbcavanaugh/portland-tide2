@@ -89,7 +89,7 @@ dailyWeather = getWeatherData()
 ### Yesterday
 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 p1 = tideData %>%
     filter(date == as.Date(Sys.time(), tz = "EST5EDT")-1)
 
