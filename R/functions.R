@@ -84,7 +84,7 @@ getPlot <- function(selectedDat, tideDat){
     stat_valleys(colour = "black") +
     geom_line() +
     scale_x_time(
-      name = "Time",
+      name = NULL,
       breaks=hours(seq(0,24,3)),
       labels=c("midnight","3am", "6am", "9am", "noon", "3pm", "6pm", "9am", "midnight")) +
     scale_y_continuous(name = "Tide Height (m)",
