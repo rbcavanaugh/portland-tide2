@@ -20,17 +20,17 @@ ntt2 <- function(x){
   tmp = lubridate::seconds_to_period(x)
   hour = tmp@hour
   minute = tmp@minute
-  if(hour>12){
+  if(isTRUE(hour>12)){
     hour = hour-12
     ampm = "pm"
-  } else if(hour==12){
+  } else if(isTRUE(hour==12)){
     ampm = "pm"
   } else {
     ampm = "am"
   }
   
   label = paste(sprintf("%02d:%02d", hour, minute), ampm)
-  if(hour<10){
+  if(isTRUE(hour<10)){
     label = str_remove(label, pattern = "0")
   }
   return(label)
@@ -78,15 +78,28 @@ getWeatherData <- function(){
 }
 
 getPlot <- function(selectedDat, tideDat){
+  
+  willard =
+    tribble(
+      ~time, ~start, ~end,
+      "morning", hours(7), hours(9),
+      "evening", hours(20), hours(21)
+    )
+  
   p =  ggplot(data = selectedDat, aes(x = time, y = TideHeight)) +
+    geom_rect(inherit.aes = FALSE,data = willard,
+              aes(xmin=hours(7), xmax=hours(9), ymin=-Inf, ymax=Inf), alpha = 0.1, fill = "#00C08B") +
+    geom_rect(inherit.aes = FALSE,data = willard,
+              aes(xmin=hours(20), xmax=hours(21), ymin=-Inf, ymax=Inf), alpha = 0.1, fill = "#00C08B") +
     geom_line(data = tideDat, alpha = 0.1) +
     stat_peaks(colour = "black") +
     stat_valleys(colour = "black") +
     geom_line() +
+    
     scale_x_time(
       name = NULL,
       breaks=hours(seq(0,24,3)),
-      labels=c("midnight","3am", "6am", "9am", "noon", "3pm", "6pm", "9am", "midnight")) +
+      labels=c("midnight","3am", "6am", "9am", "noon", "3pm", "6pm", "9pm", "midnight")) +
     scale_y_continuous(name = "Tide Height (m)",
                        breaks = seq(-1, 4, 0.5),
                        labels = seq(-1, 4, 0.5)) +
@@ -95,8 +108,8 @@ getPlot <- function(selectedDat, tideDat){
     theme(axis.text.x=element_text(angle=45, hjust=1))
   
   dat = ggplot_build(p)
-  peak_dat = dat$data[[2]][,c("x", "y")] %>% rowwise() %>% mutate(label = ntt2(x))
-  valley_dat = dat$data[[3]][,c("x", "y")] %>% rowwise() %>% mutate(label = ntt2(x))
+  peak_dat = dat$data[[4]][,c("x", "y")] %>% rowwise() %>% mutate(label = ntt2(x))
+  valley_dat = dat$data[[5]][,c("x", "y")] %>% rowwise() %>% mutate(label = ntt2(x))
   
   p_text = p + 
     annotate("text", size = 6,
@@ -106,6 +119,9 @@ getPlot <- function(selectedDat, tideDat){
   
   return(p_text)
 }
+
+#getPlot(p1, tideData)
+
 # 
 # getPlotInt <- function(selectedDat, tideDat){
 #   p = 
